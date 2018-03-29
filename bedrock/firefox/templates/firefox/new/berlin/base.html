@@ -1,0 +1,95 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox – Dein Browser für Desktop, Smartphone und Tablet')}}{% endblock %}
+{% block page_desc %}{{_('Besser digital leben mit Firefox: Superschnell surfen, Top-Privatsphäre-Schutz und gut für das Internet. Weil Mozilla dahinter steht. Das Non-Profit für ein freies und offenes Internet für alle Menschen.')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_new_berlin' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <main role="main">
+  <section class="intro content-section">
+    <div class="content">
+      <div class="copy">
+        <img class="logo" src="{{ static('img/firefox/new/berlin/firefox-logo-wordmark.png') }}" width="408" height="103" alt="" />
+        {% block head_content %}
+          <h1 id="main-heading">Dein Browser <br/>Mit HERZ.</h1>
+        {% endblock %}
+        <div class="secondary-content">
+          {% block secondary_content %}{% endblock %}
+          {% block primary_download_button %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+          <h3>Bist Du bereit?</h3>
+          <p>
+            Offline achtest Du auf Dich, Deine Ernährung, die Umwelt … Doch
+            online lassen wir uns von Werbung verfolgen, geben leichtfertig
+            <a href="{{ url('firefox.features.private-browsing') }}">unsere Privatsphäre</a>
+            auf oder sind sogar Produkt. Passt das für Dich auch nicht so
+            richtig zusammen? Dann bring doch online und offline einfach in Einklang.
+          </p>
+        </li>
+        <li>
+          <h3>Gut für Dich</h3>
+          <p>
+            Wir finden: Deine Daten gehören Dir. Daher ist der Privatsphäre-Schutz
+            von Firefox so viel stärker als bei anderen Browsern. Surfen in
+            Top-Geschwindigkeit natürlich inklusive. Übrigens: Browser wechseln war
+            <a href="https://www.youtube.com/watch?v=29wLOEYM5QE" rel="external noreferrer noopener">noch nie so einfach</a>.
+          </p>
+        </li>
+        <li>
+          <h3>Gut für das Internet</h3>
+          <p>
+            Firefox ist unabhängig und Teil von Mozilla. Das Non-Profit für ein
+            freies Internet für alle Menschen. Und nicht für nur einige Tech-Riesen.
+            Deswegen machen wir uns stark. Seit es uns gibt. Für Deine Privatsphäre
+            und ein <a href="{{ url('firefox.features.independent') }}">Internet für Menschen statt für Profit</a>.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block secondary_download %}
+  <section class="secondary-download content-section">
+    <div class="content">
+      <div class="download-contain">
+        <h2>Besser digital leben – mit Firefox.</h2>
+        <div class="download-button-wrapper">
+          {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox-today", button_color='button-orange') }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
