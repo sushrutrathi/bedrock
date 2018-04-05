@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "firefox/base-pebbles.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -29,6 +31,7 @@
             {{ _('Facebook. Well contained. Keep the rest of your life to yourself.') }}
           </h1>
           <p class="tagline tagline-download">{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
+          <p class="tagline tagline-mobile">{{ _('The Facebook Container Extension is not available on mobile devices.') }}</p>
         </header>
 
         <div class="main-cta">
@@ -38,6 +41,21 @@
 
           <div class="extension-cta">
             <a href="https://addons.mozilla.org/firefox/addon/facebook-container/">{{ _('Get the Facebook Container Extension') }}</a>
+          </div>
+
+          <div class="mobile-cta">
+            <p>{{ _('Try Firefox Focus, the privacy browser for Android and iOS.') }}</p>
+
+            <ul class="mobile-download-buttons">
+              <li class="android">
+                {{ google_play_button(alt_href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
+              </li>
+              <li class="ios">
+                <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
