@@ -207,7 +207,7 @@ $delay: 0.2s;
         }
 
         .type-p {
-            animation: pop 0.2s ease-out #{$delay * 2 + 1s} 1 both;
+            animation: pop 0.2s ease-out #{$delay * 2 + 1s} 1 both; /* stylelint-disable-line no-unknown-animations */
         }
     }
 }
