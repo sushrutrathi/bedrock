@@ -19,7 +19,7 @@
 {%- endblock -%}
 
 {% block page_desc %}
-  {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
+  {{ _('Mozilla is the not-for-profit behind the lightning fast Firefox browser. We put people over profit to give everyone more power online.') }}
 {% endblock %}
 
 {% block body_id %}home{% endblock %}
@@ -122,14 +122,15 @@
         <div class="layout-card-half">
           {{ card_block(
               class='card1',
-              tag_label=_('Internet Health'),
-              title=_('Mozilla’s approach to your data'),
-              ga_title='Mozilla’s approach to your data',
-              desc=_('These days it’s so hard to know how our online data is being handled, Mozilla puts people in control of their online experiences.'),
-              image_url='home/2018/people-over-profit.png',
+              tag_label=_('Privacy'),
+              tag_class='card-tag-audio',
+              title=_('Algorisky'),
+              ga_title='Algorisky',
+              desc=_('From Google search to Facebook news, algorithms shape our online experience. But like us, algorithms are flawed.'),
+              image_url='home/2018/algorisky.png',
               include_highres_image=True,
-              aspect_ratio='has-aspect-3-2',
-              link_url='https://blog.mozilla.org/blog/2018/04/05/we-stand-for-people-over-profit/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
+              aspect_ratio='has-aspect-1-1',
+              link_url='https://irlpodcast.org/episode12/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
           )}}
 
           {{ card_block(
@@ -235,7 +236,7 @@
           tag_label=_('Net Neutrality'),
           title=_('Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality'),
           ga_title='Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality',
-          desc=_('This morning, the Federal Communications Commission…'),
+          desc=_('This morning, the Federal Communications Commission officially published its order overturning net neutrality rules in the Federal Register.'),
           image_url='home/2018/save-the-internet.jpg',
           include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
@@ -246,7 +247,7 @@
           tag_label=_('Privacy'),
           title=_('An Open Letter to Justice Srikrishna About Data Privacy and Aadhaar'),
           ga_title='An Open Letter to Justice Srikrishna About Data Privacy and Aadhaar',
-          desc=_('Dear Justice Srikrishna and the Honourable Members of the Ministry…'),
+          desc=_('Dear Justice Srikrishna and the Honourable Members of the Ministry of Electronics and Information Technology Committee of Experts,'),
           image_url='home/2018/open-letter.png',
           include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
@@ -326,7 +327,7 @@
           tag_label=_('Innovation'),
           title=_('Announcing “Project Things” – An open framework for connecting your devices to the web.'),
           ga_title='Announcing “Project Things” – An open framework for connecting your devices to the web.',
-          desc=_('Last year, we said that Mozilla is working to create a framework of…'),
+          desc=_('Last year, we said that Mozilla is working to create a framework of software and services that can bridge the communication gap between connected devices.'),
           image_url='home/2018/project-things.png',
           include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
@@ -362,7 +363,7 @@
           tag_label=_('Internet of Things'),
           title=_('*privacy not included'),
           ga_title='*privacy not included',
-          desc=_('A Guide to Make Shopping for Connected Gifts Safer, Easier…'),
+          desc=_('A Guide to Make Shopping for Connected Gifts Safer, Easier, and Way More Fun.'),
           image_url='home/2018/privacy-not-included.png',
           include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
@@ -386,7 +387,7 @@
           tag_label=_('Internet Health'),
           title=_('Mozilla marks 20th anniversary with committment to better human experiences online'),
           ga_title='Mozilla marks 20th anniversary with committment to better human experiences online',
-          desc=_('This coming Saturday - March 31st - is Mozilla’s 20th anniversary. We’ve…'),
+          desc=_('This coming Saturday — March 31 — is Mozilla’s 20th anniversary. We’ve accomplished a fair amount in the first 20 years.'),
           image_url='home/2018/mozilla-20-anniversary.png',
           include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
