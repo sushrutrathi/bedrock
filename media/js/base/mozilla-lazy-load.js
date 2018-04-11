@@ -12,7 +12,13 @@ if (typeof Mozilla === 'undefined') {
     var LazyLoad = {};
     var _selector;
 
-    LazyLoad.supportsInsersectionObserver = typeof IntersectionObserver !== 'undefined';
+    function featureDetect() {
+        return 'IntersectionObserver' in window &&
+               'IntersectionObserverEntry' in window &&
+               'intersectionRatio' in window.IntersectionObserverEntry.prototype;
+    }
+
+    LazyLoad.supportsInsersectionObserver = featureDetect();
 
     /**
      * Callback iterates list of observables & lazy loads elements that intersect.
@@ -22,11 +28,12 @@ if (typeof Mozilla === 'undefined') {
     LazyLoad.observerCallback = function(changes, observer) {
         changes.forEach(function(change) {
             if (change.intersectionRatio > 0) {
-                change.target.src = change.target.dataset.src;
 
                 if (change.target.dataset.srcset) {
                     change.target.srcset = change.target.dataset.srcset;
                 }
+
+                change.target.src = change.target.dataset.src;
 
                 change.target.onload = LazyLoad.onImageLoad;
                 observer.unobserve(change.target);

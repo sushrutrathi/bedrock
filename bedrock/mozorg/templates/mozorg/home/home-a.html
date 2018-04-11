@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import lazy_image with context %}
-
 {% extends "base-pebbles.html" %}
 
 {% add_lang_files "mozorg/home/index-quantum" %}
@@ -48,11 +46,11 @@
   {% endif %}
 {% endblock %}
 
-{% macro card_block(class, tag_label, tag_class, title, ga_title, desc, image_url, image_highres_url, video_url, aspect_ratio, link_url, small_cta, meta) -%}
+{% macro card_block(class, tag_label, tag_class, title, ga_title, desc, image_url, include_highres_image, video_url, aspect_ratio, link_url, small_cta, meta) -%}
 <section class="card {% if class %}{{ class }}{% endif %} {% if video_url %}has-video{% endif %}">
   <a class="card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">
     <div class="card-media-wrapper {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}">
-      {{ lazy_image(image_url=image_url, image_highres_url=image_highres_url, placeholder_url='img/home/2018/placeholder.png', image_class='card-image') }}
+      {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='home/2018/placeholder.png', optional_attributes={'class': 'card-image', 'alt': ''}) }}
     </div>
     <div class="card-content">
     {% if tag_label %}
@@ -78,7 +76,7 @@
         <source src="{{ video_url }}.mp4" type="video/mp4">
       </video>
       <figcaption>
-        <p>{{ desc }} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
+        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
       </figcaption>
     </figure>
   </div>
@@ -115,8 +113,8 @@
             title=_('The browser made for people, not profit'),
             ga_title='The browser made for people, not profit',
             desc=_('So we don’t have organic heirloom tomatoes inside our code. We *are* the only major browser backed by a not-for-profit, though, and that matters.'),
-            image_url='img/home/2018/value-fresh.jpg',
-            image_highres_url='img/home/2018/value-fresh-high-res.jpg',
+            image_url='home/2018/value-fresh.jpg',
+            include_highres_image=True,
             aspect_ratio='has-aspect-16-9',
             link_url='https://medium.com/the-official-unofficial-firefox-blog/firefox-kind-of-like-if-farm-to-browser-were-a-thing-bbb38f2ea2a4',
             video_url='https://assets.mozilla.net/video/mozilla-home/farm-to-browser'
@@ -128,8 +126,8 @@
               title=_('Mozilla’s approach to your data'),
               ga_title='Mozilla’s approach to your data',
               desc=_('These days it’s so hard to know how our online data is being handled, Mozilla puts people in control of their online experiences.'),
-              image_url='img/home/2018/people-over-profit.png',
-              image_highres_url='img/home/2018/people-over-profit-high-res.png',
+              image_url='home/2018/people-over-profit.png',
+              include_highres_image=True,
               aspect_ratio='has-aspect-3-2',
               link_url='https://blog.mozilla.org/blog/2018/04/05/we-stand-for-people-over-profit/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
           )}}
@@ -140,8 +138,8 @@
               title=_('Facebook Container Extension: Take control of how you’re being tracked'),
               ga_title='Facebook Container Extension: Take control of how you’re being tracked',
               desc=_('Our Multi-Account Containers extension has been a game changer for many users, letting them manage various parts of their online life without intermingling their accounts.'),
-              image_url='img/home/2018/facebook-container.png',
-              image_highres_url='img/home/2018/facebook-container-high-res.png',
+              image_url='home/2018/facebook-container.png',
+              include_highres_image=True,
               aspect_ratio='has-aspect-3-2',
               link_url='https://blog.mozilla.org/firefox/facebook-container-extension/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
           )}}
@@ -155,8 +153,8 @@
           title=_('More power to you.'),
           ga_title='More power to you.',
           desc=_('We’re the not-for-profit behind products, technologies and programs that make the internet healthier for everyone.'),
-          image_url='img/home/2018/power-to-you.png',
-          image_highres_url='img/home/2018/power-to-you-high-res.png',
+          image_url='home/2018/power-to-you.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           small_cta=_('Learn more about us'),
           link_url=url('mozorg.about')
@@ -168,8 +166,8 @@
           title=_('Social Bubble Bath'),
           ga_title='Social Bubble Bath',
           desc=_('We’ve long heard that the ways the web is tailored for each user—how we search, what we’re shown, who we read and follow — reinforces walls between us. Veronica Belmont investigates how social media can create, and can break, our filter bubbles.'),
-          image_url='img/home/2018/irl-social-bubble-bath.png',
-          image_highres_url='img/home/2018/irl-social-bubble-bath-high-res.png',
+          image_url='home/2018/irl-social-bubble-bath.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           link_url='https://irlpodcast.org/episode13/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -179,8 +177,8 @@
           title=_('Switch from Chrome to Firefox in just a Few Minutes'),
           ga_title='Switch from Chrome to Firefox in just a Few Minutes',
           desc=_('You’ve heard about how fast the new Firefox is. You’ve heard it’s made by people who want the web to be awesome for everyone.'),
-          image_url='img/home/2018/switch-to-firefox.png',
-          image_highres_url='img/home/2018/switch-to-firefox-high-res.png',
+          image_url='home/2018/switch-to-firefox.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/firefox/switch-chrome-firefox-just-minutes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -212,8 +210,8 @@
           title=_('Manoush Zomorodi says it’s time to get bored'),
           ga_title='Manoush Zomorodi says it’s time to get bored',
           desc=_('Do you remember when you got your first smartphone? I do. Having instant access to all the internet offers, right there in my pocket, a quickdraw from my eyes, felt magical.'),
-          image_url='img/home/2018/manoush.jpg',
-          image_highres_url='img/home/2018/manoush-high-res.jpg',
+          image_url='home/2018/manoush.jpg',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/internetcitizen/2018/03/20/manoush-zomorodi-bored-brilliant/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a',
           video_url='https://assets.mozilla.net/video/mozilla-home/manoush'
@@ -225,8 +223,8 @@
           title=_('Everything you need to know about privacy may just be on Reality TV'),
           ga_title='Everything you need to know about privacy may just be on Reality TV',
           desc=_('It’s no secret that popular culture, mass media and television influence all kinds of values and cultural norms.'),
-          image_url='img/home/2018/privacy-reality-tv.jpg',
-          image_highres_url='img/home/2018/privacy-reality-tv-high-res.jpg',
+          image_url='home/2018/privacy-reality-tv.jpg',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/firefox/everything-need-know-privacy-may-just-reality-tv/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -238,8 +236,8 @@
           title=_('Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality'),
           ga_title='Mozilla v FCC: Mozilla Re-files Suit Against FCC to Protect Net Neutrality',
           desc=_('This morning, the Federal Communications Commission…'),
-          image_url='img/home/2018/save-the-internet.jpg',
-          image_highres_url='img/home/2018/save-the-internet-high-res.jpg',
+          image_url='home/2018/save-the-internet.jpg',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/blog/2018/02/22/mozilla-v-fcc-mozilla-re-files-suit-fcc-protect-net-neutrality/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -249,8 +247,8 @@
           title=_('An Open Letter to Justice Srikrishna About Data Privacy and Aadhaar'),
           ga_title='An Open Letter to Justice Srikrishna About Data Privacy and Aadhaar',
           desc=_('Dear Justice Srikrishna and the Honourable Members of the Ministry…'),
-          image_url='img/home/2018/open-letter.png',
-          image_highres_url='img/home/2018/open-letter-high-res.png',
+          image_url='home/2018/open-letter.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/blog/2018/02/09/open-letter-justice-srikrishna-data-privacy-aadhaar/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -261,8 +259,8 @@
           ga_title='Open source. Open minds.',
 
           desc=_('Mozilla creates powerful web tech for everyone.'),
-          image_url='img/home/2018/open-source.png',
-          image_highres_url='img/home/2018/open-source-high-res.png',
+          image_url='home/2018/open-source.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           small_cta=_('Explore Mozilla Technology'),
           link_url=url('mozorg.technology')
@@ -280,7 +278,7 @@
             tag_label=_('telegraph.co.uk'),
             title=_('YouTube employee’s Twitter account hacked to spread fake news during attack '),
             ga_title='Pocket Link 1',
-            image_url='img/home/2018/pocket-1.jpg',
+            image_url='home/2018/pocket-1.jpg',
             aspect_ratio='has-aspect-16-9',
             link_url='https://www.telegraph.co.uk/technology/2018/04/04/youtube-employees-twitter-account-hacked-spread-fake-news-attack/',
             meta=_('1 day ago')
@@ -291,7 +289,7 @@
             tag_label=_('nytimes.com'),
             title=_('It’s Sweater Weather Forever'),
             ga_title='Pocket Link 2',
-            image_url='img/home/2018/pocket-2.jpg',
+            image_url='home/2018/pocket-2.jpg',
             aspect_ratio='has-aspect-16-9',
             link_url='https://www.nytimes.com/2018/04/03/style/sweater-guy-sam-barsky-landmarks.html',
             meta=_('1 hours ago')
@@ -302,7 +300,7 @@
             tag_label=_('theverge.com'),
             title=_('Google is equipping more rural school buses with Wi-Fi and Chromebooks'),
             ga_title='Pocket Link 3',
-            image_url='img/home/2018/pocket-3.jpg',
+            image_url='home/2018/pocket-3.jpg',
             aspect_ratio='has-aspect-16-9',
             link_url='https://www.theverge.com/2018/4/2/17188306/google-rolling-study-halls-school-buses-wifi-chromebooks',
             meta=_('2 days ago')
@@ -313,7 +311,7 @@
             tag_label=_('wired.com'),
             title=_('Beware the Academic Vanity Honeypot'),
             ga_title='Pocket Link 4',
-            image_url='img/home/2018/pocket-4.jpg',
+            image_url='home/2018/pocket-4.jpg',
             aspect_ratio='has-aspect-16-9',
             link_url='https://www.wired.com/story/beware-the-academic-vanity-honeypot/',
             meta=_('6 days ago')
@@ -329,8 +327,8 @@
           title=_('Announcing “Project Things” – An open framework for connecting your devices to the web.'),
           ga_title='Announcing “Project Things” – An open framework for connecting your devices to the web.',
           desc=_('Last year, we said that Mozilla is working to create a framework of…'),
-          image_url='img/home/2018/project-things.png',
-          image_highres_url='img/home/2018/project-things-high-res.png',
+          image_url='home/2018/project-things.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/blog/2018/02/06/announcing-project-things-open-framework-connecting-devices-web/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -340,8 +338,8 @@
           title=_('Support a healthy internet.'),
           ga_title='Support a healthy internet.',
           desc=_('Open-source apps. Web literacy curriculum. Guides for fostering gender equality.'),
-          image_url='img/home/2018/healthy-internet.png',
-          image_highres_url='img/home/2018/healthy-internet-high-res.png',
+          image_url='home/2018/healthy-internet.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           small_cta=_('Visit the Mozilla Foundation'),
           link_url='https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
@@ -352,8 +350,8 @@
           title=_('A Perspective: Firefox Quantum’s Tracking Protection Gives Users The Right To Be Curious'),
           ga_title='A Perspective: Firefox Quantum’s Tracking Protection Gives Users The Right To Be Curious',
           desc=_('In the physical world, we don’t wear our ID on our foreheads. This is convenient because we can walk around with a reasonable expectation of privacy and let our curiosity take us to interesting places.'),
-          image_url='img/home/2018/quantum-tracking-protection.png',
-          image_highres_url='img/home/2018/quantum-tracking-protection-high-res.png',
+          image_url='home/2018/quantum-tracking-protection.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-3-2',
           link_url='https://blog.mozilla.org/blog/2018/02/14/a-perspective-firefox-quantum-tracking-protection-gives-users-the-right-to-be-curious/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -365,8 +363,8 @@
           title=_('*privacy not included'),
           ga_title='*privacy not included',
           desc=_('A Guide to Make Shopping for Connected Gifts Safer, Easier…'),
-          image_url='img/home/2018/privacy-not-included.png',
-          image_highres_url='img/home/2018/privacy-not-included-high-res.png',
+          image_url='home/2018/privacy-not-included.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           link_url='https://advocacy.mozilla.org/privacynotincluded/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
@@ -377,8 +375,8 @@
           title=_('What Facial Recognition Gets Wrong'),
           ga_title='What Facial Recognition Gets Wrong',
           desc=_('Scientists teach computers facial recognition by giving them a dataset of thousands of faces to process.'),
-          image_url='img/home/2018/facial-recognition.png',
-          image_highres_url='img/home/2018/facial-recognition-high-res.png',
+          image_url='home/2018/facial-recognition.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           link_url='https://blog.mozilla.org/internetcitizen/2018/02/05/irl-face-the-future/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a',
           video_url='https://assets.mozilla.net/video/mozilla-home/algorithms'
@@ -389,8 +387,8 @@
           title=_('Mozilla marks 20th anniversary with committment to better human experiences online'),
           ga_title='Mozilla marks 20th anniversary with committment to better human experiences online',
           desc=_('This coming Saturday - March 31st - is Mozilla’s 20th anniversary. We’ve…'),
-          image_url='img/home/2018/mozilla-20-anniversary.png',
-          image_highres_url='img/home/2018/mozilla-20-anniversary-high-res.png',
+          image_url='home/2018/mozilla-20-anniversary.png',
+          include_highres_image=True,
           aspect_ratio='has-aspect-1-1',
           link_url='https://blog.mozilla.org/blog/2018/03/29/mozilla-marks-20th-anniversary-commitment-better-human-experiences-online/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}

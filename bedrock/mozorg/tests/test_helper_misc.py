@@ -462,6 +462,49 @@ class TestHighResImg(TestCase):
         self.assertEqual(markup, expected)
 
 
+@override_settings(STATIC_URL='/media/')
+class TestLazyImg(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, image_url, placeholder_url, include_highres_image=False, optional_attributes=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ lazy_img('{0}', '{1}', {2}, {3}) }}}}".format(image_url, placeholder_url, include_highres_image, optional_attributes),
+                      {'request': req})
+
+    def test_lazy_img(self):
+        """Should return expected markup"""
+        markup = self._render(image_url='test.png', placeholder_url='placeholder.png',
+                              include_highres_image=True, optional_attributes={'class': 'the-dude', 'alt': 'abides'})
+        expected = (
+            u'<div class="lazy-image-container">'
+            u'<img class="the-dude" src="/media/img/placeholder.png" data-src="/media/img/test.png" '
+            u'data-srcset="/media/img/test-high-res.png 2x" alt="abides">'
+            u'<noscript><img class="the-dude" src="/media/img/test.png" data-srcset="/media/img/test-high-res.png 2x" alt="abides"></noscript>'
+            u'</div>')
+        self.assertEqual(markup, expected)
+
+    def test_lazy_img_no_highres_image(self):
+        """Should return no highres image"""
+        markup = self._render(image_url='test.png', placeholder_url='placeholder.png')
+        self.assertIn(u'src="/media/img/placeholder.png"', markup)
+        self.assertIn(u'data-src="/media/img/test.png"', markup)
+        self.assertNotIn(u'data-srcset="/media/img/test-high-res.png 2x"', markup)
+
+    def test_lazy_img_no_optional_attributes(self):
+        """Should return no optional attributes and use default image class"""
+        markup = self._render(image_url='test.png', placeholder_url='placeholder.png')
+        self.assertIn(u'class="lazy-image"', markup)
+        self.assertNotIn(u'alt=""', markup)
+
+    def test_lazy_img_optional_attributes(self):
+        """Should return expected optional attributes and use custom image class"""
+        markup = self._render(image_url='test.png', placeholder_url='placeholder.png', optional_attributes={'class': 'the-dude', 'alt': 'abides'})
+        self.assertNotIn(u'class="lazy-image"', markup)
+        self.assertIn(u'class="the-dude"', markup)
+        self.assertIn(u'alt="abides"', markup)
+
+
 class TestAbsoluteURLFilter(TestCase):
     rf = RequestFactory()
     static_url_dev = '/static/'
