@@ -2060,7 +2060,7 @@ redirectpatterns = (
     redirect(r'^thunderbird/(?P<version>[^/]+)/releasenotes/$',
              'https://www.thunderbird.net/thunderbird/{version}/releasenotes/'),
     redirect(r'^thunderbird/(?P<version>[^/]+)/system-requirements/$',
-             'https://www.thunderbird.net/en-US/thunderbird/{version}/system-requirements/'),
+             'https://www.thunderbird.net/thunderbird/{version}/system-requirements/'),
     redirect(r'^thunderbird/(?P<path>.*)', 'https://www.thunderbird.net/{path}'),
     redirect('^tinderbox\.html$', 'http://developer.mozilla.org/en/Tinderbox'),
     redirect('^tools\.html$', 'http://developer.mozilla.org/en/Mozilla_Development_Tools'),
