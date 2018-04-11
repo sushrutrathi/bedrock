@@ -24,7 +24,7 @@ Each image to be lazy loaded should match the following HTML structure::
 
 This above HTML snippet is also available via a handy Python helper that can be used directly in any bedrock template::
 
-    {{ lazy_img((image_url='path/to/image.png', placeholder_url='path/to/placeholder.png', include_highres_image=True, optional_attributes={'class': 'some-class-name', 'alt': ''}) }}
+    {{ lazy_img(image_url='path/to/image.png', placeholder_url='path/to/placeholder.png', include_highres_image=True, optional_attributes={'class': 'some-class-name'}) }}
 
 Parameters
 ~~~~~~~~~~
@@ -32,7 +32,7 @@ Parameters
 - ``image_url`` - Path to final image ``src``.
 - ``placeholder_url`` - Path to placeholder image for use before final image is loaded. This image should be small in file size, and can be shared between all images on a page that are to be lazy loaded.
 - ``include_highres_image`` - A boolean value to indicate a high resolution version of an image is available. When ``True``, the function will automatically look for the image in the ``image_url`` parameter suffixed with `'-high-res'` and switch to it if the display has high pixel density. Defaults to ``False``.
-- ``optional_attributes`` - A dictionary of optional HTML attributes you may want to append to an image.
+- ``optional_attributes`` - A dictionary of custom HTML attributes you may want to add to an image.
 
 To initialize the lazy loading plugin, in your JS run::
 
