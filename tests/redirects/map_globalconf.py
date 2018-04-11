@@ -255,7 +255,7 @@ URLS = flatten((
     url_test('/thunderbird/all.htm', 'https://www.thunderbird.net/thunderbird/all/'),
     url_test('/thunderbird/all-beta.html', 'https://www.thunderbird.net/thunderbird/beta/all/'),
     url_test('/thunderbird/early_releases/downloads/', 'https://www.thunderbird.net/thunderbird/beta/all/'),
-    url_test('/thunderbird/early_releases/', 'https://www.thunderbird.net/channel/'),
+    url_test('/thunderbird/early_releases/', 'https://www.thunderbird.net/thunderbird/beta/all/'),
 
     # bug 1081917, 1029829, 1029838
     url_test('/thunderbird/releases/0.9.html',
